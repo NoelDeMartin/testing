@@ -1,0 +1,41 @@
+{
+  "name": "@noeldemartin/testing",
+  "version": "0.0.0",
+  "description": "My JavaScript utilities for testing",
+  "main": "dist/noeldemartin-testing.cjs.js",
+  "module": "dist/noeldemartin-testing.esm.js",
+  "types": "dist/noeldemartin-testing.d.ts",
+  "sideEffects": false,
+  "scripts": {
+    "build": "rm dist -rf && npm run build:js && npm run build:types",
+    "build:js": "noeldemartin-build-javascript",
+    "build:types": "noeldemartin-build-types",
+    "lint": "noeldemartin-lint src",
+    "publish-next": "noeldemartin-publish-next"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/noeldemartin/testing.git"
+  },
+  "keywords": [
+    "testing"
+  ],
+  "author": "Noel De Martin",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/noeldemartin/testing/issues"
+  },
+  "homepage": "https://github.com/noeldemartin/testing",
+  "dependencies": {
+    "@babel/runtime": "^7.24.8",
+    "@noeldemartin/faker": "^7.6.0",
+    "@noeldemartin/utils": "^0.5.1",
+    "core-js": "^3.37.1"
+  },
+  "devDependencies": {
+    "@noeldemartin/eslint-config-typescript": "^0.1.2",
+    "@noeldemartin/scripts": "^0.2.1",
+    "eslint": "^7.32.0",
+    "typescript": "^5.5.3"
+  }
+}
