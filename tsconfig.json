@@ -1,18 +1,13 @@
 {
+    "extends": "@tsconfig/node22/tsconfig.json",
+    "include": ["src/**/*.ts"],
     "compilerOptions": {
-        "target": "esnext",
-        "module": "esnext",
-        "moduleResolution": "node",
-        "strict": true,
-        "noUncheckedIndexedAccess": true,
-        "esModuleInterop": true,
-        "skipLibCheck": true,
-        "baseUrl": "./src",
+        "baseUrl": ".",
+        "module": "ESNext",
+        "moduleResolution": "Bundler",
+        "types": ["node"],
         "paths": {
-            "@/*": ["./*"]
+            "@noeldemartin/testing/*": ["./src/*"]
         }
-    },
-    "include": [
-        "src/**/*.ts"
-    ]
+    }
 }
