@@ -3,12 +3,9 @@
     "version": "0.0.0",
     "type": "module",
     "sideEffects": false,
-    "module": "./dist/noeldemartin-testing.js",
-    "types": "./dist/noeldemartin-testing.d.ts",
     "exports": {
-        ".": {
-            "import": "./dist/noeldemartin-testing.js"
-        }
+        "types": "./dist/noeldemartin-testing.d.ts",
+        "default": "./dist/noeldemartin-testing.js"
     },
     "files": [
         "src",
@@ -16,10 +13,7 @@
     ],
     "license": "MIT",
     "author": "Noel De Martin",
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/NoelDeMartin/testing.git"
-    },
+    "repository": "git+https://github.com/NoelDeMartin/testing.git",
     "scripts": {
         "build": "vite build",
         "lint": "npm run lint:eslint && npm run lint:tsc",
