@@ -20,9 +20,12 @@
         "test": "vitest --run",
         "test:ci": "vitest --run --reporter verbose"
     },
+    "peerDependencies": {
+        "vitest": "*"
+    },
     "dependencies": {
         "@noeldemartin/faker": "^7.6.0",
-        "@noeldemartin/utils": "0.6.0-next.036a147180df61c600c4599df30816ac860dbf06"
+        "@noeldemartin/utils": "0.7.0-next.71ccea1eb392c9d3e0049b8ce09175bcd265dbd2"
     },
     "devDependencies": {
         "@noeldemartin/eslint-config-typescript": "^0.1.2",

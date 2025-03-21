@@ -1,7 +1,8 @@
 import { describe, expect, it } from 'vitest';
+import type { Equals } from '@noeldemartin/utils';
 
 import { tt } from '@noeldemartin/testing/types';
-import type { Equals, Expect } from '@noeldemartin/testing/types';
+import type { Expect } from '@noeldemartin/testing/types';
 
 import { mock } from './mocking';
 import type { Mock } from './mocking';

@@ -1,4 +1,4 @@
-import { arrayRemove, toString } from '@noeldemartin/utils';
+import { arrayRemove, facade, toString } from '@noeldemartin/utils';
 import type { GetClosureArgs } from '@noeldemartin/utils';
 
 import FakeResponse from './FakeResponse';
@@ -20,7 +20,7 @@ export interface FakeServerResponse {
     times?: number;
 }
 
-export default class FakeServer {
+export class FakeServerInstance {
 
     public readonly fetch: typeof fetch;
     protected fetchSpy: FetchSpy | null = null;
@@ -138,3 +138,5 @@ export default class FakeServer {
     }
 
 }
+
+export default facade(FakeServerInstance);
