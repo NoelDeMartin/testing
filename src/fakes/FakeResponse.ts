@@ -14,6 +14,14 @@ export default class FakeResponse implements Response {
         return new FakeResponse(body, headers, 404);
     }
 
+    public static resetContent(body: string = '', headers: Record<string, string> = {}): FakeResponse {
+        return new FakeResponse(body, headers, 205);
+    }
+
+    public static internalServerError(body: string = '', headers: Record<string, string> = {}): FakeResponse {
+        return new FakeResponse(body, headers, 500);
+    }
+
     public readonly body!: ReadableStream<Uint8Array> | null;
     public readonly bodyUsed!: boolean;
     public readonly headers: Headers;

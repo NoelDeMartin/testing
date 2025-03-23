@@ -1,5 +1,7 @@
 import { arrayRemove, facade, toString } from '@noeldemartin/utils';
+import { vi } from 'vitest';
 import type { GetClosureArgs } from '@noeldemartin/utils';
+import type { MockInstance } from 'vitest';
 
 import FakeResponse from './FakeResponse';
 
@@ -23,7 +25,8 @@ export interface FakeServerResponse {
 export class FakeServerInstance {
 
     public readonly fetch: typeof fetch;
-    protected fetchSpy: FetchSpy | null = null;
+    public readonly fetchSpy: MockInstance;
+    protected _spy: FetchSpy | null = null;
     protected requests: FakeServerRequest[] = [];
     protected responses: Record<string, FakeServerResponse[]> = {};
 
@@ -62,14 +65,16 @@ export class FakeServerInstance {
             request.response = response;
             this.requests.push(request);
 
-            this.fetchSpy?.(request);
+            this._spy?.(request);
 
             return response;
         };
+
+        this.fetchSpy = vi.spyOn(this as FakeServerInstance, 'fetch');
     }
 
     public spy(fetchSpy: FetchSpy): void {
-        this.fetchSpy = fetchSpy;
+        this._spy = fetchSpy;
     }
 
     public getRequest(url: string): FakeServerRequest | null;
@@ -94,7 +99,17 @@ export class FakeServerInstance {
         return this.requests.filter((request) => request.url === url && (!method || request.method === method));
     }
 
-    public respond(url: string, response: Response | FakeServerResponse): void {
+    public respond(url: string, response?: Response | FakeServerResponse | string | number): void {
+        response ??= FakeResponse.success();
+
+        if (typeof response === 'string') {
+            response = FakeResponse.success(response);
+        }
+
+        if (typeof response === 'number') {
+            response = new FakeResponse(undefined, undefined, response);
+        }
+
         this.responses[url] ??= [];
         this.responses[url]?.push('response' in response ? response : { response });
     }
@@ -104,7 +119,17 @@ export class FakeServerInstance {
         this.responses[url]?.push({ response: handler });
     }
 
-    public respondOnce(url: string, response: Response): void {
+    public respondOnce(url: string, response?: Response | string | number): void {
+        response ??= FakeResponse.success();
+
+        if (typeof response === 'string') {
+            response = FakeResponse.success(response);
+        }
+
+        if (typeof response === 'number') {
+            response = new FakeResponse(undefined, undefined, response);
+        }
+
         this.respond(url, { response, times: 1 });
     }
 
@@ -118,7 +143,7 @@ export class FakeServerInstance {
     }
 
     protected async matchResponse(request: FakeServerRequest): Promise<Response> {
-        const responses = this.responses[request.url];
+        const responses = this.responses[request.url] ?? this.responses['*'];
         const response = responses?.find((r) => !r.method || r.method === request.method);
 
         if (!responses || !response) {
