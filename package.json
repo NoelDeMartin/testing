@@ -26,7 +26,7 @@
     },
     "dependencies": {
         "@noeldemartin/faker": "^7.6.0",
-        "@noeldemartin/utils": "0.7.0-next.71ccea1eb392c9d3e0049b8ce09175bcd265dbd2"
+        "@noeldemartin/utils": "0.7.0-next.928e77e4d67adf7b9e4e1c5387f321ecfe3b11ca"
     },
     "devDependencies": {
         "@noeldemartin/eslint-config-typescript": "^0.1.2",
