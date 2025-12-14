@@ -21,18 +21,23 @@
         "test:ci": "vitest --run --reporter verbose",
         "verify": "noeldemartin-verify"
     },
+    "packageManager": "pnpm@10.20.0",
     "peerDependencies": {
         "vitest": "*"
     },
     "dependencies": {
         "@noeldemartin/faker": "^7.6.0",
-        "@noeldemartin/utils": "0.7.0-next.928e77e4d67adf7b9e4e1c5387f321ecfe3b11ca"
+        "@noeldemartin/utils": "next"
     },
     "devDependencies": {
         "@noeldemartin/eslint-config-typescript": "^0.1.2",
-        "@noeldemartin/scripts": "0.3.0-next.2dfd366e59e45ecf5ead1a617e4d0e870dbea507",
+        "@noeldemartin/scripts": "next",
         "@tsconfig/node22": "^22.0.0",
         "@types/node": "^22.13.10",
+        "eslint": "^8.57.1",
+        "prettier": "^3.7.1",
+        "prettier-eslint-cli": "^8.0.1",
+        "publint": "^0.3.12",
         "typescript": "^5.8.2",
         "vite": "^6.2.2",
         "vite-plugin-dts": "^4.5.3",

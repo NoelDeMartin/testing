@@ -1,6 +1,5 @@
 import { arrayRemove, facade, toString } from '@noeldemartin/utils';
 import { vi } from 'vitest';
-import type { GetClosureArgs } from '@noeldemartin/utils';
 import type { MockInstance } from 'vitest';
 
 import FakeResponse from './FakeResponse';
@@ -31,7 +30,7 @@ export class FakeServerInstance {
     protected responses: Record<string, FakeServerResponse[]> = {};
 
     constructor() {
-        const getRequest = (...[input, options]: GetClosureArgs<typeof fetch>): FakeServerRequest => {
+        const getRequest = (...[input, options]: Parameters<typeof fetch>): FakeServerRequest => {
             if (typeof input === 'string') {
                 return {
                     url: input,

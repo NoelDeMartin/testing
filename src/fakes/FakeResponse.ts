@@ -1,5 +1,3 @@
-import type { ResponseType } from 'undici-types';
-
 export default class FakeResponse implements Response {
 
     public static created(body: string = '', headers: Record<string, string> = {}): FakeResponse {
@@ -22,7 +20,7 @@ export default class FakeResponse implements Response {
         return new FakeResponse(body, headers, 500);
     }
 
-    public readonly body!: ReadableStream<Uint8Array> | null;
+    public readonly body!: Response['body'];
     public readonly bodyUsed!: boolean;
     public readonly headers: Headers;
     public readonly ok!: boolean;
@@ -30,7 +28,7 @@ export default class FakeResponse implements Response {
     public readonly status: number;
     public readonly statusText!: string;
     public readonly trailer!: Promise<Headers>;
-    public readonly type!: ResponseType;
+    public readonly type!: Response['type'];
     public readonly url!: string;
 
     private rawBody: string;
@@ -49,7 +47,7 @@ export default class FakeResponse implements Response {
         throw new Error('FakeResponse.blob() is not implemented');
     }
 
-    public async bytes(): Promise<Uint8Array> {
+    public bytes(): Response extends { bytes(): infer TResponse } ? TResponse : Promise<Uint8Array> {
         throw new Error('FakeResponse.bytes() is not implemented');
     }
 
