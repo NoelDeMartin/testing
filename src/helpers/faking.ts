@@ -15,19 +15,31 @@ export interface ResourceOptions extends DocumentOptions {
     hash: string;
 }
 
+const fakeUrls: Record<string, string> = {};
+
+function claimFakeUrl(url: string): string {
+    fakeUrls[url] = url;
+
+    return url;
+}
+
+function fakeUniqueUrl(prefix: string, suffix: string = ''): string {
+    return faker.helpers.unique(() => prefix + stringToSlug(faker.random.word()) + suffix, [], { store: fakeUrls });
+}
+
 export function fakeContainerUrl(options: Partial<ContainerOptions> = {}): string {
-    const containerSlug = stringToSlug(faker.random.word());
     const baseUrl = options.baseUrl ?? faker.internet.url();
     const parentContainerUrl = baseUrl.endsWith('/') ? baseUrl : baseUrl + '/';
 
-    return parentContainerUrl + containerSlug + '/';
+    return fakeUniqueUrl(parentContainerUrl, '/');
 }
 
 export function fakeDocumentUrl(options: Partial<DocumentOptions> = {}): string {
     const containerUrl = options.containerUrl ?? fakeContainerUrl(options);
-    const name = options.name ?? faker.random.word();
 
-    return containerUrl + stringToSlug(name);
+    return options.name !== undefined
+        ? claimFakeUrl(containerUrl + stringToSlug(options.name))
+        : fakeUniqueUrl(containerUrl);
 }
 
 export function fakeResourceUrl(options: Partial<ResourceOptions> = {}): string {
