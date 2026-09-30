@@ -1,14 +1,12 @@
-import { describe, expect, it } from 'vitest';
-import type { Equals } from '@noeldemartin/utils';
-
 import { tt } from '@noeldemartin/testing/types';
 import type { Expect } from '@noeldemartin/testing/types';
+import type { Equals } from '@noeldemartin/utils';
+import { describe, expect, it } from 'vite-plus/test';
 
 import { mock } from './mocking';
 import type { Mock } from './mocking';
 
 class Target {
-
     public foo(): void {
         //
     }
@@ -16,23 +14,18 @@ class Target {
     public bar(): void {
         //
     }
-
 }
 
 class PartialTargetMock implements Pick<Target, 'foo'> {
-
     public foo(): void {
         //
     }
-
 }
 
 class FullTargetMock extends Target {
-
     public foo(): void {
         //
     }
-
 }
 
 const targetMock = mock<Target>();
@@ -42,7 +35,6 @@ const targetMockWithPartialMockClass = mock<Target>(new PartialTargetMock());
 const targetMockWithFullMockClass = mock<Target>(new FullTargetMock());
 
 describe('Mocking types', () => {
-
     it('mocks methods', () => {
         targetMockWithFullMockClass.foo();
         targetMockWithFullMockClass.bar();
@@ -73,5 +65,4 @@ describe('Mocking types', () => {
             | true
         >(),
     );
-
 });

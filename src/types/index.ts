@@ -7,5 +7,5 @@ export type Not<X> = X extends true ? false : true;
 export type Extends<X, Y> = Y extends X ? true : false;
 export type HasKey<T, K extends string> = K extends keyof T ? true : false;
 
-// eslint-disable-next-line
+// oxlint-disable-next-line no-unused-vars, typescript/no-explicit-any
 export const tt: <T>() => () => any = () => () => expect(true).toBe(true);

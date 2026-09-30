@@ -1,7 +1,6 @@
+import { mock } from '@noeldemartin/testing/helpers/mocking';
 import { extendFacadeMethods, getClassMethods } from '@noeldemartin/utils';
 import type { Constructor, Facade, FacadeMethods } from '@noeldemartin/utils';
-
-import { mock } from '@noeldemartin/testing/helpers/mocking';
 
 export function setupFacadeMocks(): void {
     extendFacadeMethods((facadeInstance) => {

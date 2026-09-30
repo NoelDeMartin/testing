@@ -2,7 +2,6 @@ import { facade } from '@noeldemartin/utils';
 import { vi } from 'vitest';
 
 export class FakeLocalStorageInstance implements Storage {
-
     public data: Record<string, string> = {};
 
     public constructor() {
@@ -43,7 +42,6 @@ export class FakeLocalStorageInstance implements Storage {
     public setItem(key: string, value: string): void {
         this.data[key] = value;
     }
-
 }
 
 export default facade(FakeLocalStorageInstance);

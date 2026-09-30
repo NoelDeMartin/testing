@@ -1,5 +1,4 @@
 export default class FakeResponse implements Response {
-
     public static created(body: string = '', headers: Record<string, string> = {}): FakeResponse {
         return new FakeResponse(body, headers, 201);
     }
@@ -63,8 +62,11 @@ export default class FakeResponse implements Response {
         return this.rawBody;
     }
 
-    public clone(): Response {
-        return { ...this };
+    public textStream(): ReadableStream<string> {
+        throw new Error('FakeResponse.textStream() is not implemented');
     }
 
+    public clone(): Response {
+        return new FakeResponse(this.rawBody, Object.fromEntries(this.headers.entries()), this.status);
+    }
 }

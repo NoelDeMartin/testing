@@ -1,6 +1,6 @@
 import { getClassMethods, isPlainObject } from '@noeldemartin/utils';
-import { vi } from 'vitest';
 import type { Obj } from '@noeldemartin/utils';
+import { vi } from 'vitest';
 
 export type Mock<T> = T;
 

@@ -22,7 +22,6 @@ export interface FakeServerResponse {
 }
 
 export class FakeServerInstance {
-
     public readonly fetch: typeof fetch;
     public readonly fetchSpy: MockInstance;
     protected _spy: FetchSpy | null = null;
@@ -160,7 +159,6 @@ export class FakeServerInstance {
 
         return response.response;
     }
-
 }
 
 export default facade(FakeServerInstance);

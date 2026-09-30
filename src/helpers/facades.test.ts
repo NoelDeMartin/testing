@@ -1,20 +1,17 @@
 import { facade } from '@noeldemartin/utils';
-import { beforeEach, describe, expect, it } from 'vitest';
+import { beforeEach, describe, expect, it } from 'vite-plus/test';
 
 import { setupFacadeMocks } from './facades';
 
 describe('Facade mocks', () => {
-
     beforeEach(() => setupFacadeMocks());
 
     it('Mocks instances', () => {
         // Arrange
         class UsersService {
-
             public getNames(): string[] {
                 return ['john', 'amy'];
             }
-        
         }
 
         const users = facade(UsersService);
@@ -30,11 +27,9 @@ describe('Facade mocks', () => {
     it('Mocks instances using provided mocks', () => {
         // Arrange
         class UsersService {
-
             public getNames(): string[] {
                 return ['john', 'amy'];
             }
-        
         }
 
         const users = facade(UsersService);
@@ -52,19 +47,15 @@ describe('Facade mocks', () => {
     it('Mocks instances using mock class setter', () => {
         // Arrange
         class UsersService {
-
             public getNames(): string[] {
                 return ['john', 'amy'];
             }
-        
         }
 
         class UsersServiceMock extends UsersService {
-
             public getNames(): string[] {
                 return ['mocked'];
             }
-        
         }
 
         const users = facade(UsersService);
@@ -83,15 +74,12 @@ describe('Facade mocks', () => {
     it('Mocks instances using mock class instance', () => {
         // Arrange
         class UsersService {
-
             public getNames(): string[] {
                 return ['john', 'amy'];
             }
-        
         }
 
         class UsersServiceMock extends UsersService {
-
             public getNames(): string[] {
                 return ['mocked'];
             }
@@ -99,7 +87,6 @@ describe('Facade mocks', () => {
             public assertNamesCalled(): void {
                 expect(this.getNames).toHaveBeenCalled();
             }
-        
         }
 
         const users = facade(UsersService);
@@ -119,13 +106,11 @@ describe('Facade mocks', () => {
     it('mocks instances using mock facades', () => {
         // Arrange
         class CounterService {
-
             public count: number = 0;
 
             public add(): void {
                 this.count++;
             }
-        
         }
 
         class MockCounterService extends CounterService {}
@@ -146,5 +131,4 @@ describe('Facade mocks', () => {
         expect(counter.count).toEqual(3);
         expect(mockCounter.count).toEqual(3);
     });
-
 });
