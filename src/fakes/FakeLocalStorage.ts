@@ -17,7 +17,7 @@ export class FakeLocalStorageInstance implements Storage {
     }
 
     public patchGlobal(): void {
-        globalThis.localStorage = this;
+        vi.stubGlobal('localStorage', this);
     }
 
     public clear(): void {
