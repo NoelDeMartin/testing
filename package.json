@@ -28,6 +28,7 @@
     "devDependencies": {
         "@arethetypeswrong/core": "^0.18.5",
         "@noeldemartin/scripts": "next",
+        "@noeldemartin/vite-plus-config": "next",
         "@tsconfig/node26": "^26.0.1",
         "@types/node": "^26.6.3",
         "publint": "^0.3.24",
@@ -37,7 +38,7 @@
         "vitest": "catalog:"
     },
     "peerDependencies": {
-        "vitest": "*"
+        "vitest": ">=5.0.0"
     },
-    "packageManager": "pnpm@11.5.2"
+    "packageManager": "pnpm@12.8.1"
 }
